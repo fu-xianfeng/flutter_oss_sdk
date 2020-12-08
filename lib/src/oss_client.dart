@@ -63,11 +63,91 @@ class OssClient
     return call;
   }
 
+  String ossDate(){
+    var date = new DateTime.now();
+    var year = date.year;
+    var month = date.month < 10 ? '0${date.month}' : date.month;
+    var day = date.day < 10 ? '0${date.day}' : date.day;
+    var hour = date.hour < 10 ? '0${date.hour}' : date.hour;
+    var minute = date.minute < 10 ? '0${date.minute}' : date.minute;
+    var seconds = date.second < 10 ? '0${date.second}' : date.second;
+    var zone = date.timeZoneName;
+    var weekDay = date.weekday;
+
+    var weekDayStr = 'Mon';
+    switch (weekDay){
+      case 1:
+        weekDayStr = 'Mon';
+        break;
+      case 2:
+        weekDayStr = 'Tue';
+        break;
+      case 3:
+        weekDayStr = 'Wed';
+        break;
+      case 4:
+        weekDayStr = 'Thu';
+        break;
+      case 5:
+        weekDayStr = 'Fri';
+        break;
+      case 6:
+        weekDayStr = 'Sat';
+        break;
+      case 7:
+        weekDayStr = 'Sun';
+        break;
+    }
+
+    var monthStr = 'Jan';
+    switch (month){
+      case 1:
+        monthStr = 'Jan';
+        break;
+      case 2:
+        monthStr = 'Feb';
+        break;
+      case 3:
+        monthStr = 'Mar';
+        break;
+      case 4:
+        monthStr = 'Apr';
+        break;
+      case 5:
+        monthStr = 'May';
+        break;
+      case 6:
+        monthStr = 'Jun';
+        break;
+      case 7:
+        monthStr = 'Jul';
+        break;
+      case 8:
+        monthStr = 'Aug';
+        break;
+      case 9:
+        monthStr = 'Sept';
+        break;
+      case 10:
+        monthStr = 'Oct';
+        break;
+      case 11:
+        monthStr = 'Nov';
+        break;
+      case 12:
+        monthStr = 'Dec';
+        break;
+    }
+
+    return "$weekDayStr, $day $monthStr $year $hour:$minute:$seconds GMT";
+  }
+
   Future<OssRequest> createOssRequest(RequestMessage requestMessage) async {
     OssRequest request = OssRequest();
+    var date = new DateTime.now();
     Map<String, dynamic> header = {
       HttpHeaderKey.CONTENT_TYPE:requestMessage.contentType??'',
-        "x-oss-date": "123"
+        "x-oss-date": ossDate()
     };
     //生成url
     request.url = _buildUrl(requestMessage);
