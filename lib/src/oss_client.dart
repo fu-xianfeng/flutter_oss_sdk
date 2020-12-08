@@ -147,7 +147,8 @@ class OssClient
     var date = new DateTime.now();
     Map<String, dynamic> header = {
       HttpHeaderKey.CONTENT_TYPE:requestMessage.contentType??'',
-        "x-oss-date": ossDate()
+        "x-oss-date": ossDate(),
+        "Date": ossDate()
     };
     //生成url
     request.url = _buildUrl(requestMessage);
