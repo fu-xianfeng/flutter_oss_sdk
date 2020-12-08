@@ -64,7 +64,7 @@ class OssClient
   }
 
   String ossDate(){
-    var date = new DateTime.now();
+    var date = new DateTime.now().toUtc();
     var year = date.year;
     var month = date.month < 10 ? '0${date.month}' : date.month;
     var day = date.day < 10 ? '0${date.day}' : date.day;
@@ -139,7 +139,7 @@ class OssClient
         break;
     }
 
-    return "$weekDayStr, $day $monthStr $year $hour:$minute:$seconds $zone";
+    return "$weekDayStr, $day $monthStr $year $hour:$minute:$seconds GMT";
   }
 
   Future<OssRequest> createOssRequest(RequestMessage requestMessage) async {
