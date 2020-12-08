@@ -66,7 +66,8 @@ class OssClient
   Future<OssRequest> createOssRequest(RequestMessage requestMessage) async {
     OssRequest request = OssRequest();
     Map<String, dynamic> header = {
-      HttpHeaderKey.CONTENT_TYPE:requestMessage.contentType??''
+      HttpHeaderKey.CONTENT_TYPE:requestMessage.contentType??'',
+        "x-oss-date": "123"
     };
     //生成url
     request.url = _buildUrl(requestMessage);
