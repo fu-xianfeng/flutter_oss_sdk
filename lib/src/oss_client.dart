@@ -139,7 +139,7 @@ class OssClient
         break;
     }
 
-    return "$weekDayStr, $day $monthStr $year $hour:$minute:$seconds GMT";
+    return "$weekDayStr, $day $monthStr $year $hour:$minute:$seconds $zone";
   }
 
   Future<OssRequest> createOssRequest(RequestMessage requestMessage) async {
